@@ -1,4 +1,4 @@
-package com.evgeny.goncharov.diplom.model.view;
+package com.evgeny.goncharov.diplom.model.view.code;
 
 public class AnyResponse implements BaseResponse{
 

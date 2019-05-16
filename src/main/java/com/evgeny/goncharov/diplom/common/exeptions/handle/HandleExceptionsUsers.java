@@ -2,9 +2,10 @@ package com.evgeny.goncharov.diplom.common.exeptions.handle;
 
 import com.evgeny.goncharov.diplom.common.consts.ApiAnswer;
 import com.evgeny.goncharov.diplom.common.exeptions.ApiKeyInvalidException;
+import com.evgeny.goncharov.diplom.common.exeptions.DeleteArticleException;
 import com.evgeny.goncharov.diplom.common.exeptions.UserWasException;
-import com.evgeny.goncharov.diplom.model.view.AnyResponse;
-import com.evgeny.goncharov.diplom.model.view.BaseResponse;
+import com.evgeny.goncharov.diplom.model.view.code.AnyResponse;
+import com.evgeny.goncharov.diplom.model.view.code.BaseResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class HandleExceptionsUsers {
 
-
+    //имя уже есть
     @ExceptionHandler(UserWasException.class)
     @ResponseBody
     public ResponseEntity<BaseResponse> nameWas() {
@@ -26,7 +27,7 @@ public class HandleExceptionsUsers {
     }
 
 
-
+    //ошибка пароля или имени
     @ExceptionHandler(UsernameNotFoundException.class)
     @ResponseBody
     public ResponseEntity<BaseResponse> nameError(){
@@ -36,7 +37,7 @@ public class HandleExceptionsUsers {
     }
 
 
-
+    //ошибка апи кея
     @ExceptionHandler(ApiKeyInvalidException.class)
     @ResponseBody
     public ResponseEntity<BaseResponse> invalidApiKey(){
@@ -45,5 +46,14 @@ public class HandleExceptionsUsers {
                 HttpStatus.CONFLICT);
     }
 
+    
+    //ошибка удаления статьи
+    @ExceptionHandler(DeleteArticleException.class)
+    @ResponseBody
+    public ResponseEntity<BaseResponse> invalidIdArticle(){
+        return new ResponseEntity<BaseResponse>(new AnyResponse(ApiAnswer.ERROR_DEL_ART),
+                new HttpHeaders(),
+                HttpStatus.CONFLICT);
+    }
 
 }

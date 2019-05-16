@@ -9,14 +9,18 @@ public class ApiAnswer {
 
     public static final String ERROR_API_KEY = "Api key is not valid";
 
+    public static final String ERROR_DEL_ART = "Deleting an article is impossible";
 
 
-    //okey
+
+    //okay
     public static final String REG_OK = "Registration okey";
 
     public static final String AUT_OK = "Authorization okey";
 
     public static final String CRE_ART = "Create article done";
+
+    public static final String CRE_DEL = "Delete article done";
 
 
 }

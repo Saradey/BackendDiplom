@@ -1,5 +1,6 @@
 package com.evgeny.goncharov.diplom.service.impl;
 
+import com.evgeny.goncharov.diplom.common.exeptions.DeleteArticleException;
 import com.evgeny.goncharov.diplom.model.model.Article;
 import com.evgeny.goncharov.diplom.model.request.RequestCreateArticle;
 import com.evgeny.goncharov.diplom.repository.ArticleRepository;
@@ -24,17 +25,16 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void saveArticle(RequestCreateArticle article) {
         Article articleModel = new Article(article);
-        //бизнес логика на проверку данных
+        //бизнес логика на проверку данных будет в аспекте
         articleRepository.saveAndFlush(articleModel);
     }
 
 
     @Override
-    public boolean deleteArticle(long idArticle) {
+    public void deleteArticle(long idArticle) throws DeleteArticleException {
         if (articleRepository.existsById(idArticle)){
             articleRepository.deleteById(idArticle);
-            return true;
-        } else return false;
+        } else throw new DeleteArticleException();
     }
 
 
@@ -58,7 +58,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getArticleForUser(String login) {
         List<Article> articles = articleRepository.getArticleForUser(login);
-        System.out.println("getArticleForUser " + login);
         return articles;
     }
 
