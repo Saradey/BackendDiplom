@@ -2,6 +2,7 @@ package com.evgeny.goncharov.diplom.controllers;
 
 import com.evgeny.goncharov.diplom.common.consts.ApiAnswer;
 import com.evgeny.goncharov.diplom.common.exeptions.DeleteArticleException;
+import com.evgeny.goncharov.diplom.model.model.Article;
 import com.evgeny.goncharov.diplom.model.request.RequestCreateArticle;
 import com.evgeny.goncharov.diplom.model.request.RequestDeleteArticle;
 import com.evgeny.goncharov.diplom.model.view.code.AnyResponse;
@@ -16,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.evgeny.goncharov.diplom.common.consts.ApiMethod;
+
+import java.util.List;
 
 @RestController
 public class ArticleController {
@@ -43,22 +46,31 @@ public class ArticleController {
 
     @GetMapping(ApiMethod.GET_LAST_ARTICLE)
     public ResponseEntity<ResponseStructure> lastArticleGet(@RequestParam String apiKey) {
+        List<Article> lastArticle = articleService.getLastArticle();
+        ArticleResponse response = new ArticleResponse(lastArticle);
         return new ResponseEntity<ResponseStructure>(
-                new ResponseStructure(new ArticleResponse(articleService.getLastArticle())), new HttpHeaders(), HttpStatus.OK);
+                new ResponseStructure(
+                        response), new HttpHeaders(), HttpStatus.OK);
     }
 
 
     @GetMapping(ApiMethod.GET_ARTICLE_OFFSET)
     public ResponseEntity<ResponseStructure> articleOffsetGet(@RequestParam String apiKey, @RequestParam String idOffset) {
+        List<Article> dataOffset = articleService.getArticleOffset(Long.valueOf(idOffset));
+        ArticleResponse articleResponse = new ArticleResponse(dataOffset);
         return new ResponseEntity<ResponseStructure>(
-                new ResponseStructure(new ArticleResponse(articleService.getArticleOffset(Long.valueOf(idOffset)))), new HttpHeaders(), HttpStatus.OK);
+                new ResponseStructure(
+                        articleResponse), new HttpHeaders(), HttpStatus.OK);
     }
 
 
     @GetMapping(ApiMethod.GET_ARTICLE_FOR_USER)
     public ResponseEntity<ResponseStructure> articleUserGet(@RequestParam String apiKey, @RequestParam String username) {
+        List<Article> dataUser = articleService.getArticleForUser(username);
+        ArticleResponse articleResponse = new ArticleResponse(dataUser);
         return new ResponseEntity<ResponseStructure>(
-                new ResponseStructure(new ArticleResponse(articleService.getArticleForUser(username))), new HttpHeaders(), HttpStatus.OK);
+                new ResponseStructure(
+                        articleResponse), new HttpHeaders(), HttpStatus.OK);
     }
 
 
