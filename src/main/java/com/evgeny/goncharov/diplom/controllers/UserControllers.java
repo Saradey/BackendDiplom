@@ -24,13 +24,15 @@ public class UserControllers {
     @PostMapping(ApiMethod.REGISTRATION_USER)
     public ResponseEntity<BaseResponse> registrationUserPost(@RequestBody RequestRegUser user) throws UserWasException {
         userService.regUser(user);
-        return new ResponseEntity<BaseResponse>(new AnyResponse(ApiAnswer.REG_OK), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<BaseResponse>(new AnyResponse
+                (ApiAnswer.REG_OK), new HttpHeaders(), HttpStatus.OK);
     }
 
 
-    @PostMapping(ApiMethod.AUTHENTICATION)
-    public ResponseEntity<BaseResponse> authorizationUserPost(@RequestBody RequestBase requestBase){
-        return new ResponseEntity<BaseResponse>(new AnyResponse(ApiAnswer.AUT_OK), new HttpHeaders(), HttpStatus.OK);
+    @PostMapping(ApiMethod.AUTHORIZATION)
+    public ResponseEntity<BaseResponse> authorizationUserPost(@RequestBody RequestBase requestBase) {
+        return new ResponseEntity<BaseResponse>(new AnyResponse
+                (ApiAnswer.AUT_OK), new HttpHeaders(), HttpStatus.OK);
     }
 
 

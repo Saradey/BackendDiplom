@@ -65,8 +65,8 @@ public class ArticleController {
 
 
     @GetMapping(ApiMethod.GET_ARTICLE_FOR_USER)
-    public ResponseEntity<ResponseStructure> articleUserGet(@RequestParam String apiKey, @RequestParam String username) {
-        List<Article> dataUser = articleService.getArticleForUser(username);
+    public ResponseEntity<ResponseStructure> articleUserGet(@RequestParam String apiKey, @RequestParam String login) {
+        List<Article> dataUser = articleService.getArticleForUser(login);
         ArticleResponse articleResponse = new ArticleResponse(dataUser);
         return new ResponseEntity<ResponseStructure>(
                 new ResponseStructure(

@@ -6,7 +6,7 @@ public class ApiMethod {
     //UserController
     public static final String REGISTRATION_USER = "user/registration";
 
-    public static final String AUTHENTICATION = "user/authentication";
+    public static final String AUTHORIZATION = "user/authentication";
 
     public static final String LOGOUT = "user/logout";
 

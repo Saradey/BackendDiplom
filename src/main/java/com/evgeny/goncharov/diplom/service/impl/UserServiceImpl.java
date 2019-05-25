@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
     public void regUser(RequestRegUser user) throws UserWasException {
         if (repository.findById(user.getName()).isPresent()) {
             throw new UserWasException();
-
         } else {
             Users users = new Users();
             users.setUsername(user.getName());

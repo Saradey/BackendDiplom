@@ -2,6 +2,7 @@ package com.evgeny.goncharov.diplom.common.exeptions.handle;
 
 import com.evgeny.goncharov.diplom.common.consts.ApiAnswer;
 import com.evgeny.goncharov.diplom.common.exeptions.ApiKeyInvalidException;
+import com.evgeny.goncharov.diplom.common.exeptions.BadWordsException;
 import com.evgeny.goncharov.diplom.common.exeptions.DeleteArticleException;
 import com.evgeny.goncharov.diplom.common.exeptions.UserWasException;
 import com.evgeny.goncharov.diplom.model.view.code.AnyResponse;
@@ -21,7 +22,8 @@ public class HandleExceptionsUsers {
     @ExceptionHandler(UserWasException.class)
     @ResponseBody
     public ResponseEntity<BaseResponse> nameWas() {
-        return new ResponseEntity<BaseResponse>(new AnyResponse(ApiAnswer.NAME_WAS),
+        return new ResponseEntity<BaseResponse>(
+                new AnyResponse(ApiAnswer.NAME_WAS),
                 new HttpHeaders(),
                 HttpStatus.CONFLICT);
     }
@@ -30,8 +32,9 @@ public class HandleExceptionsUsers {
     //ошибка пароля или имени
     @ExceptionHandler(UsernameNotFoundException.class)
     @ResponseBody
-    public ResponseEntity<BaseResponse> nameError(){
-        return new ResponseEntity<BaseResponse>(new AnyResponse(ApiAnswer.ERROR_USERNAME),
+    public ResponseEntity<BaseResponse> nameError() {
+        return new ResponseEntity<BaseResponse>(
+                new AnyResponse(ApiAnswer.ERROR_USERNAME),
                 new HttpHeaders(),
                 HttpStatus.CONFLICT);
     }
@@ -40,20 +43,34 @@ public class HandleExceptionsUsers {
     //ошибка апи кея
     @ExceptionHandler(ApiKeyInvalidException.class)
     @ResponseBody
-    public ResponseEntity<BaseResponse> invalidApiKey(){
-        return new ResponseEntity<BaseResponse>(new AnyResponse(ApiAnswer.ERROR_API_KEY),
+    public ResponseEntity<BaseResponse> invalidApiKey() {
+        return new ResponseEntity<BaseResponse>(
+                new AnyResponse(ApiAnswer.ERROR_API_KEY),
                 new HttpHeaders(),
                 HttpStatus.CONFLICT);
     }
 
-    
+
     //ошибка удаления статьи
     @ExceptionHandler(DeleteArticleException.class)
     @ResponseBody
-    public ResponseEntity<BaseResponse> invalidIdArticle(){
-        return new ResponseEntity<BaseResponse>(new AnyResponse(ApiAnswer.ERROR_DEL_ART),
+    public ResponseEntity<BaseResponse> invalidIdArticle() {
+        return new ResponseEntity<BaseResponse>(
+                new AnyResponse(ApiAnswer.ERROR_DEL_ART),
                 new HttpHeaders(),
                 HttpStatus.CONFLICT);
     }
+
+
+    //ошибка если матершина
+    @ExceptionHandler(BadWordsException.class)
+    @ResponseBody
+    public ResponseEntity<BaseResponse> invalidTextArticle() {
+        return new ResponseEntity<BaseResponse>(
+                new AnyResponse(ApiAnswer.ERROR_BAD_WORDS),
+                new HttpHeaders(),
+                HttpStatus.CONFLICT);
+    }
+
 
 }

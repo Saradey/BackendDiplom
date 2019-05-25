@@ -11,6 +11,7 @@ public class ApiAnswer {
 
     public static final String ERROR_DEL_ART = "Deleting an article is impossible";
 
+    public static final String ERROR_BAD_WORDS = "Sorry, you are matershinnik";
 
 
     //okay

@@ -2,20 +2,20 @@ package com.evgeny.goncharov.diplom.model.request;
 
 public class RequestBase {
 
-    protected String apiKe;
+    protected String apiKey;
 
-    public RequestBase(String apiKe) {
-        this.apiKe = apiKe;
+    public RequestBase(String apiKey) {
+        this.apiKey = apiKey;
     }
 
     public RequestBase() {
     }
 
     public String getApiKey() {
-        return apiKe;
+        return apiKey;
     }
 
-    public void setApiKe(String apiKe) {
-        this.apiKe = apiKe;
+    public void setApiKey(String apiKe) {
+        this.apiKey = apiKe;
     }
 }
