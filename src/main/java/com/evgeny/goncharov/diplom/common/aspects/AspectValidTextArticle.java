@@ -37,8 +37,6 @@ public class AspectValidTextArticle {
         String textArticle = createArticle.getTextArticle();
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(textArticle);
-
-        System.out.println("SSSSS");
         while (matcher.find()) {
             throw new BadWordsException();
         }

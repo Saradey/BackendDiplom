@@ -50,11 +50,4 @@ public class ConfSecurity extends WebSecurityConfigurerAdapter {
                 .disable();
     }
 
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-
 }
